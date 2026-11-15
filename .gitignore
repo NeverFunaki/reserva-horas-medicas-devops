@@ -1,0 +1,24 @@
+# Variables de entorno y secretos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+secrets/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Logs y temporales
+*.log
+*.tmp
+node_modules/
+
+# Evidencias locales pesadas (las capturas se integran en el informe)
+*.zip
