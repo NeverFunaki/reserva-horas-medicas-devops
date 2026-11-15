@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserva de Horas Médicas | Centro de Salud Vida Plena</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <div class="contenedor">
+      <h1>Centro de Salud Vida Plena</h1>
+      <p>Plataforma de reserva de horas médicas (entorno de demostración DevOps)</p>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section class="tarjeta estado" aria-label="Estado del servicio">
+      <h2>Estado del servicio</h2>
+      <p><span class="insignia">● Operativo</span> Servicio web estático servido con Nginx en Docker.</p>
+      <ul>
+        <li>Versión de la aplicación: <strong>1.0.0</strong></li>
+        <li>Servidor: <strong>Nginx (imagen nginx:alpine)</strong></li>
+        <li>Puerto local: <strong>8080</strong></li>
+      </ul>
+    </section>
+
+    <section class="tarjeta" aria-label="Datos generales de atención">
+      <h2>Datos generales de atención</h2>
+      <table>
+        <thead>
+          <tr><th>Especialidad</th><th>Días de atención</th><th>Horario</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Medicina general</td><td>Lunes a viernes</td><td>08:00 – 18:00</td></tr>
+          <tr><td>Pediatría</td><td>Lunes, miércoles y viernes</td><td>09:00 – 15:00</td></tr>
+          <tr><td>Cardiología</td><td>Martes y jueves</td><td>10:00 – 16:00</td></tr>
+          <tr><td>Dermatología</td><td>Miércoles</td><td>14:00 – 19:00</td></tr>
+        </tbody>
+      </table>
+      <p class="nota">Datos ficticios con fines académicos.</p>
+    </section>
+
+    <section class="tarjeta" aria-label="Formulario de reserva">
+      <h2>Reserva de hora médica</h2>
+      <form id="form-reserva" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej.: Persona de Prueba" required>
+        </div>
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.test" required>
+        </div>
+        <div class="campo">
+          <label for="especialidad">Especialidad</label>
+          <select id="especialidad" name="especialidad" required>
+            <option value="">Seleccione una opción</option>
+            <option>Medicina general</option>
+            <option>Pediatría</option>
+            <option>Cardiología</option>
+            <option>Dermatología</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="fecha">Fecha preferida</label>
+          <input type="date" id="fecha" name="fecha" required>
+        </div>
+        <div class="campo">
+          <label for="hora">Horario preferido</label>
+          <select id="hora" name="hora" required>
+            <option value="">Seleccione una opción</option>
+            <option>Mañana (08:00 – 12:00)</option>
+            <option>Tarde (14:00 – 18:00)</option>
+          </select>
+        </div>
+        <button type="submit">Reservar hora</button>
+        <p id="mensaje" role="status" aria-live="polite"></p>
+      </form>
+      <p class="nota">Este formulario es una simulación: no se envían ni almacenan datos. No ingrese información personal real.</p>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p>Proyecto integrador DevOps – IACC 2026 · Servicio estático sin API ni base de datos</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simulación en el navegador: no existe backend ni almacenamiento de datos.
+    document.getElementById('form-reserva').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = e.target, msg = document.getElementById('mensaje');
+      if (!f.checkValidity()) {
+        msg.className = 'error';
+        msg.textContent = 'Complete todos los campos con datos válidos.';
+        return;
+      }
+      msg.className = 'ok';
+      msg.textContent = 'Solicitud simulada para ' + f.especialidad.value + ' el ' + f.fecha.value + '. No se almacenó ningún dato.';
+      f.reset();
+    });
+  </script>
+</body>
+</html>
